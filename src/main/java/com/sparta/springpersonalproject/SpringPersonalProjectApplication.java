@@ -12,6 +12,9 @@ public class SpringPersonalProjectApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringPersonalProjectApplication.class, args);
+
+
+
+        }
     }
 
-}
