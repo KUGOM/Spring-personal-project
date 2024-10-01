@@ -21,7 +21,7 @@ public class AdminRepository {
     private final JdbcTemplate jdbcTemplate;
 
     public Admin save(Admin entity) {
-        String sql = "insert into admin(name, email, create_at, update_at) values(?,?,?,?)";
+        String sql = "INSERT INTO admin(name, email, create_at, update_at) values(?,?,?,?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {

@@ -1,6 +1,7 @@
 package com.sparta.springpersonalproject.entity;
 
 import com.sparta.springpersonalproject.dto.TodoRequestDto;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +11,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Entity
 public class Todo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String todo;
+    @ManyToOne
+    @JoinColumn(name = "admin_id", nullable = false)
     private Admin admin;
     private String password;
     private LocalDateTime createAt;
