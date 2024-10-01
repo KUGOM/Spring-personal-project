@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 public class Todo {
     private Long id;
     private String todo;
-    private String adminName;
+    private Admin admin;
     private String password;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
-    public Todo(TodoRequestDto todoRequestDto){
+    public Todo(TodoRequestDto todoRequestDto, Admin admin){
         this.todo = todoRequestDto.getTodo();
-        this.adminName = todoRequestDto.getAdminName();
+        this.admin = admin;
         this.password = todoRequestDto.getPassword();
         this.createAt = LocalDateTime.now();
         this.updateAt = LocalDateTime.now();
@@ -34,8 +34,8 @@ public class Todo {
         this.todo = todo;
     }
 
-    public void changeAdminName(String adminName){
-        this.adminName = adminName;
+    public void changeAdmin(Admin admin){
+        this.admin = admin;
     }
 }
 

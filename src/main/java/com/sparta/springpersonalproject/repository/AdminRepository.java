@@ -72,7 +72,7 @@ public class AdminRepository {
         jdbcTemplate.update(sql, params.toArray());
     }
 
-    private void delete(long AdminId){
+    public void delete(long AdminId){
         String sql = "DELETE FROM admin WHERE id = ?";
         jdbcTemplate.update(sql, AdminId);
     }

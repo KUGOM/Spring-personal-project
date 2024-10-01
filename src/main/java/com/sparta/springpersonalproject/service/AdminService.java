@@ -16,8 +16,8 @@ public class AdminService {
     private final AdminRepository adminRepository;
 
     public AdminResponseDto createAdmin(AdminRequestDto adminRequestDto) {
-        Admin admin = new Admin(adminRequestDto);
-        return AdminResponseDto.of(adminRepository.save(admin));
+        Admin entity = new Admin(adminRequestDto);
+        return AdminResponseDto.of(adminRepository.save(entity));
     }
 
     public Admin getAdminEntity(long adminId) {return adminRepository.findById(adminId).orElseThrow();}
@@ -37,5 +37,19 @@ public class AdminService {
         if(adminRequestDto.getName() != null){
             admin.changeName(adminRequestDto.getName());
         }
+
+        if(adminRequestDto.getEmail() != null){
+            admin.changeEmail(adminRequestDto.getEmail());
+        }
+
+        adminRepository.update(admin);
+
+        Admin updatedAdmin = adminRepository.findById(adminId).orElseThrow();
+        return AdminResponseDto.of(updatedAdmin);
+    }
+
+    public void deleteAdmin(long adminId) {
+        Admin admin = adminRepository.findById(adminId).orElseThrow();
+        adminRepository.delete(admin.getId());
     }
 }

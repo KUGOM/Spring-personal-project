@@ -3,6 +3,7 @@ package com.sparta.springpersonalproject.controller;
 import com.sparta.springpersonalproject.dto.AdminRequestDto;
 import com.sparta.springpersonalproject.dto.AdminResponseDto;
 import com.sparta.springpersonalproject.service.AdminService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,13 @@ import java.util.List;
 public class AdminController {
     private final AdminService adminService;
 
-    @PostMapping("/admin")
-    public ResponseEntity<AdminResponseDto> createAdmin(@RequestBody AdminRequestDto adminRequestDto) {
-        AdminResponseDto adminResponseDto = AdminService.createAdmin(adminRequestDto);
+    @PostMapping("/admins")
+    public ResponseEntity<AdminResponseDto> createAdmin(@Valid @RequestBody AdminRequestDto adminRequestDto) {
+        AdminResponseDto adminResponseDto = adminService.createAdmin(adminRequestDto);
         return ResponseEntity.ok(adminResponseDto);
     }
 
-    @GetMapping("/admin/{adminId}")
+    @GetMapping("/admins/{adminId}")
     public ResponseEntity<AdminResponseDto> getAdmin(@PathVariable long adminId) {
         AdminResponseDto adminResponseDto = adminService.getAdmin(adminId);
         return ResponseEntity.ok(adminResponseDto);
@@ -33,7 +34,7 @@ public class AdminController {
         return ResponseEntity.ok(adminResponseDto);
     }
 
-    @PutMapping("/admin/update/{adminid}")
+    @PutMapping("/admins/{adminid}")
     public ResponseEntity<AdminResponseDto> updateAdmin(
             @PathVariable long adminId,
             @RequestBody AdminRequestDto adminRequestDto
@@ -42,7 +43,7 @@ public class AdminController {
         return ResponseEntity.ok(adminResponseDto);
     }
 
-    @DeleteMapping("/admin/delete/{adminid}")
+    @DeleteMapping("/admins/{adminid}")
     public void deleteAdmin(@PathVariable long adminId) {
         adminService.deleteAdmin(adminId);
     }
